@@ -1,0 +1,187 @@
+<div class="m-5">
+  <app-navbar [mensaje]="mensaje"></app-navbar>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>{{ accion }} {{ mensaje }}</h2>
+    </div>
+  </div>
+
+
+<!--  
+<pre>{{myForm.value | json}}</pre>
+<pre>{{myForm.invalid}}</pre>
+-->
+
+  <div class="row">
+    <div class="col-lg-6">
+      <br />
+      <form [formGroup]="myForm" autocomplete="off">
+        <div *ngIf="accion === 'Crear'" class="col_lg-12">
+          <mat-form-field class="example-container1" [style.fontSize.px]="16">
+            <mat-label>ID Parametro</mat-label>
+            <input matInput formControlName="idparametro"/>
+          </mat-form-field>
+
+          <div *ngIf="myForm.get('idparametro')?.hasError('required')  && myForm.get('idparametro')?.touched" style="margin-top: -20px;">
+            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+          </div>
+          <div *ngIf="myForm.get('idparametro')?.hasError('maxlength') && myForm.get('idparametro')?.touched" style="margin-top: -20px;">
+             <span class="mda-form-msg">El campo debe tener como maximo <strong>50 caracteres</strong></span>
+          </div>
+          <div *ngIf="myForm.get('idparametro')?.hasError('minlength') && myForm.get('idparametro')?.touched" style="margin-top: -20px;">
+             <span class="mda-form-msg">El campo debe tener como minimo <strong>3 caracteres</strong></span>
+          </div>
+      </div>
+
+        <div class="col_lg-12">
+          <mat-form-field class="example-container1" [style.fontSize.px]="16">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre"/>
+          </mat-form-field>
+          <div *ngIf="myForm.get('nombre')?.hasError('required')  && myForm.get('nombre')?.touched" style="margin-top: -20px;">
+            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+          </div>
+          <div *ngIf="myForm.get('nombre')?.hasError('maxlength') && myForm.get('nombre')?.touched" style="margin-top: -20px;">
+             <span class="mda-form-msg">El campo debe tener como maximo <strong>15050 caracteres</strong></span>
+          </div>
+          <div *ngIf="myForm.get('nombre')?.hasError('minlength') && myForm.get('nombre')?.touched" style="margin-top: -20px;">
+             <span class="mda-form-msg">El campo debe tener como minimo <strong>5 caracteres</strong></span>
+          </div>
+
+        </div>
+
+        <div class="col_lg-12">
+          <mat-form-field class="example-container1" [style.fontSize.px]="16">
+            <mat-label>Descripcion</mat-label>
+            <textarea matInput formControlName="descripcion" 
+            rows="3"></textarea>
+          </mat-form-field>
+          <div *ngIf="myForm.get('descripcion')?.hasError('required')  && myForm.get('descripcion')?.touched" style="margin-top: -20px;">
+            <span class="mda-form-msg">Este campo es <strong>requerido</strong></span>
+          </div>
+          <div *ngIf="myForm.get('descripcion')?.hasError('maxlength') && myForm.get('descripcion')?.touched" style="margin-top: -20px;">
+             <span class="mda-form-msg">El campo debe tener como maximo <strong>15050 caracteres</strong></span>
+          </div>
+          <div *ngIf="myForm.get('descripcion')?.hasError('minlength') && myForm.get('descripcion')?.touched" style="margin-top: -20px;">
+             <span class="mda-form-msg">El campo debe tener como minimo <strong>5 caracteres</strong></span>
+          </div>
+        </div>
+
+        <div class="col_lg-12">
+          <mat-form-field class="example-container1" [style.fontSize.px]="16">
+            <mat-label>Valor Entero</mat-label>
+            <input type="number"
+            matInput formControlName="valor_entero"
+            (input)="validaNumeroEntero()"
+            />
+          </mat-form-field>
+
+          <!--
+          <div *ngIf="myForm.get('valor_entero')?.hasError('pattern') && myForm.get('valor_entero')?.touched" style="margin-top: -20px;">
+            <span class="mda-form-msg">El deber ser un <strong>Numero</strong></span>
+          </div>
+          -->
+
+          <div *ngIf="myForm.get('valor_entero')?.hasError('max') && myForm.get('valor_entero')?.touched" style="margin-top: -20px;">
+             <span class="mda-form-msg">El campo debe tener como valor maximo <strong>999999999</strong></span>
+          </div>
+          <div *ngIf="myForm.get('valor_entero')?.hasError('min') && myForm.get('valor_entero')?.touched" style="margin-top: -20px;">
+             <span class="mda-form-msg">El campo debe tener como valor minimo <strong>0</strong></span>
+          </div>
+
+        </div>
+
+        <div class="col_lg-12">
+          <mat-form-field class="example-container1" [style.fontSize.px]="16">
+            <mat-label>Valor Decimal</mat-label>
+            <input type="number"
+            matInput formControlName="valor_decimal"
+            (input)="validaNumeroDecimal()"
+            />
+          </mat-form-field>
+
+        </div>
+
+        <div class="col_lg-12">
+
+          <mat-form-field class="example-container1">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fecha">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+          </mat-form-field>
+          
+          <!--
+          <mat-form-field class="example-container1">
+            <mat-label>Fecha</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="fecha"/>
+            <mat-hint>{{getDateFormatString()}}</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+          </mat-form-field>
+          <button mat-button (click)="french()">Cambiar a DD/MM/YYYY</button>
+          -->
+        </div>
+
+        <div class="col_lg-12">
+          <mat-form-field class="example-container1" [style.fontSize.px]="16">
+            <mat-label>Texto</mat-label>
+            <input matInput formControlName="texto" />
+          </mat-form-field>
+        </div>
+
+        <br />
+
+        <div class="col_lg-12">
+          <mat-form-field class="example-container1" appearance="fill">
+            <mat-label>Brand Provider</mat-label>
+            <mat-select formControlName="brandProviderId" required>
+              <mat-option
+                *ngFor="let brandP of brandProviders"
+                [value]="brandP.brandProviderId"
+              >
+                {{ brandP.total_name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-12">
+          <button
+            class="btn btn-success btn-lg float-right"
+            [disabled]="myForm.invalid"
+            type="button"
+            style="margin-left: 10px"
+            (click)="guardarParametro()"
+          >
+            Aceptar
+          </button>
+          <button
+            class="btn btn-secondary btn-lg float-right"
+            routerLink="/parametros"
+            type="button "
+          >
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-4 offset-lg-2">
+      <img src="../../../assets/images/crear-usuario.jpg" alt="" width="100%" />
+    </div>
+
+    <!--
+        <div class="col-lg-4 offset-lg-2 ">
+            
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/800px-User_icon_2.svg.png " width="200" height="200">
+            
+        </div>
+    -->
+  </div>
+</div>

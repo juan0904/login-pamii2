@@ -1,0 +1,74 @@
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+    <!--
+    <div *ngFor="let option of anOptions">
+        <button mat-menu-item routerLink="/{{option.url}}">
+            <mat-icon>{{option.icon}}</mat-icon>{{option.description}} </button>
+    </div>
+    -->
+    <button *ngIf="anRole === 'USER_ROLE' && anProvider == 5" mat-menu-item routerLink="/loadplantilla">
+        <mat-icon>dialpad</mat-icon>
+        <span>ETL Productos Proveedor/Marca</span>
+    </button>
+
+    <button *ngIf="anRole === 'USER_ROLE'" mat-menu-item routerLink="/productos">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>Productos</span>
+    </button>
+
+    <button *ngIf="anRole === 'USER_ROLE'" mat-menu-item routerLink="/brandproviders">
+        <mat-icon>handshake</mat-icon>
+        <span>Bolsa de Oportunidades</span>
+    </button>
+
+    <button *ngIf="anRole === 'USER_ROLE'" mat-menu-item routerLink="/viewplantilla">
+        <mat-icon>dataset</mat-icon>
+        <span>Plantilla Proveedor/Marca</span>
+    </button>
+
+    <button *ngIf="anRole === 'ADMIN_ROLE'" mat-menu-item routerLink="/usuarios">
+        <mat-icon>person</mat-icon>
+        <span>Usuarios Pamii</span>
+    </button>
+
+    <button *ngIf="anRole === 'ADMIN_ROLE'" mat-menu-item routerLink="/ajustaaristas">
+        <mat-icon>border_all</mat-icon>
+        <span>Ajusta Aristas x Proveedor/Marca</span>
+    </button>
+
+    <button *ngIf="anRole === 'USER_ROLE'" mat-menu-item routerLink="/parametros">
+        <mat-icon>settings</mat-icon>
+        <span>Parametros Pamii x Proveedor/Marca</span>
+    </button>
+
+
+
+    <button mat-menu-item (click)="salir()">Salir</button>
+</mat-menu>
+
+<mat-toolbar color="warn">
+    <span>{{mensaje}}</span>
+</mat-toolbar>
+
+
+
+<!--
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>Custom Toolbar</span>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row>
+        <span>Second Line</span>
+        <span class="example-spacer"></span>
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">verified_user</mat-icon>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row>
+        <span>Third Line</span>
+        <span class="example-spacer"></span>
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+    </mat-toolbar-row>
+</mat-toolbar>
+-->

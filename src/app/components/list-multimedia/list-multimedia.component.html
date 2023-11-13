@@ -1,0 +1,137 @@
+<div class="m-5">
+    <app-navbar [mensaje]="mensaje"></app-navbar>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>Multimedia Producto Proveedor/Marca</h2>
+        </div>
+        <div class="col-lg-6" style="text-align: right;">
+            
+            <button mat-raised-button color="warn" routerLink="/referencias/{{anIdProduct}}">Referencias</button>
+            
+            <button mat-raised-button color="primary" routerLink="/home" type="button ">Home</button>
+        </div>
+    </div>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo. Pedro" #input autocomplete="off">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+            
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+                        
+
+            
+            <ng-container matColumnDef="url">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> URL </th>
+                <td mat-cell *matCellDef="let element"> {{element.url}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="imagen">
+                <th mat-header-cell *matHeaderCellDef> Imagen </th>
+                <td mat-cell *matCellDef="let element; let i = index">
+                    <img src='{{element.url}}' alt="Sin Imagen" />
+                </td>
+            </ng-container>
+
+<!--
+            <ng-container matColumnDef="reference">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Producto </th>
+                <td mat-cell *matCellDef="let element">{{element.reference}}</td>
+            </ng-container>
+
+            
+            <ng-container matColumnDef="optionsStatus">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+                <td mat-cell *matCellDef="let element">
+                    <a *ngIf="element.optionsStatus === 'Si'" style="color: #E15639">
+                        <mat-icon>done</mat-icon>
+                    </a>
+
+                    <a *ngIf="element.optionsStatus === 'No'" style="color: #E15639">
+                        <mat-icon>block</mat-icon>
+                    </a>
+
+                </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="optionsUpdatedat">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Actualizacion </th>
+                <td mat-cell *matCellDef="let element">{{element.optionsUpdatedat | date: 'yyyy/MM/dd HH:mm:ss '}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="qty">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Cantidad</th>
+                <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> PVP</th>
+                <td mat-cell *matCellDef="let element"> {{element.price | currency}} </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="iva">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> IVA</th>
+                <td mat-cell *matCellDef="let element"> {{element.iva | percent}} </td>
+            </ng-container>
+
+            
+            <ng-container matColumnDef="size">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Talla</th>
+                <td mat-cell *matCellDef="let element"> {{element.size}} </td>
+            </ng-container>
+
+-->
+
+            <!--
+            <ng-container matColumnDef="color">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Color</th>
+                <td mat-cell *matCellDef="let element"> {{element.color}} </td>
+            </ng-container>
+            -->
+            
+
+
+   <!--           
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef> Multimedia </th>
+                <td mat-cell *matCellDef="let element; let i = index">
+
+                    
+                    <a class="pointer" routerLink="/multimedia/{{element.id}}" style="color: #1878B0">
+                        <mat-icon>photo</mat-icon>
+                    </a>
+-->                    
+                    
+                    <!--
+                    <a (click)=eliminarIdentificationtype(i,element) class="pointer" style="color: #E15639">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                     -->
+
+
+   <!--           
+
+                    </td>
+            </ng-container>
+        -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+
+
+</div>
+

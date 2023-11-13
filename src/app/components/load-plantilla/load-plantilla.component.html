@@ -1,0 +1,74 @@
+<div class="m-5">
+    <app-navbar [mensaje]="mensaje"></app-navbar>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>LOG ETL Proveedor/Marca</h2>
+        </div>
+
+        <div class="col-lg-6" style="text-align: right;">
+            <button mat-raised-button color="warn" (click)="loadPlantilla()">Cargar Productos SOAP Siesa</button>
+            <button mat-raised-button color="primary" routerLink="/home" type="button ">Home</button>
+        </div>
+
+    </div>
+
+
+    <div *ngIf="brandProviders.length > 1 and brandProviders" class="col_lg-12">
+        <mat-form-field appearance="fill">
+            <mat-label>Brand Provider</mat-label>
+            <mat-select (selectionChange)="select($event.value)">
+                <mat-option *ngFor="let brandP of brandProviders" [value]="brandP.brandProviderId">
+                    {{brandP.brandProviderId}} - {{brandP.businessName}}/{{brandP.brand}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo. Pedro" #input autocomplete="off">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="fechahorainicio">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Inicio </th>
+                <td mat-cell *matCellDef="let element">{{element.fecha_horainicio | date: 'yyyy/MM/dd HH:mm:ss '}}
+                </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="fechahorafin">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Fin </th>
+                <td mat-cell *matCellDef="let element">{{element.fecha_horafin | date: 'yyyy/MM/dd HH:mm:ss '}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let element">{{element.status}}</td>
+            </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+
+
+    </div>
+
+</div>

@@ -1,0 +1,6 @@
+{
+    "/api": {
+    "target": "https://apibrands.estoespamii.com/api",
+    "secure": false
+    }
+}

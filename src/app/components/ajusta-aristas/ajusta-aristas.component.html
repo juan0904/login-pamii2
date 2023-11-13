@@ -1,0 +1,98 @@
+<div class="m-5">
+    <app-navbar [mensaje]="mensaje"></app-navbar>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <h2>LOG ETL Ajusta Aristas x Proveedor/Marca</h2>
+        </div>
+        <div class="col-lg-6" style="text-align: right;">
+            <button mat-raised-button color="warn" (click)="loadAristas()">Ajustar Aristas x Proveedor/Marca</button>
+            <button mat-raised-button color="primary" routerLink="/home" type="button ">Home</button>
+
+            <div *ngIf="brandProviders" class="col_lg-12">
+                <mat-form-field appearance="fill">
+                    <mat-label>Proveedor/Marca</mat-label>
+                    
+                    <mat-select > 
+                        <mat-option (click)="ajustaBrandProvider(brandP.brandProviderId)"  *ngFor="let brandP of brandProviders" [value]="brandP.brandProviderId">
+                            {{brandP.total_name}}
+                        </mat-option>
+                    </mat-select>
+                        
+                </mat-form-field>
+            </div>
+            
+ 
+        </div>
+    </div>
+
+    <mat-form-field appearance="standard">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo. Pedro" #input autocomplete="off">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brandProviderProductId">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Producto Id</th>
+                <td mat-cell *matCellDef="let element">{{element.brandProviderProductId}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="sku">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Sku</th>
+                <td mat-cell *matCellDef="let element">{{element.sku}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="product">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Producto</th>
+                <td mat-cell *matCellDef="let element">{{element.product}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="long">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Largo</th>
+                <td mat-cell *matCellDef="let element">{{element.long}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="high">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Alto</th>
+                <td mat-cell *matCellDef="let element">{{element.high}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="wide">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ancho</th>
+                <td mat-cell *matCellDef="let element">{{element.wide}}</td>
+            </ng-container>
+
+            <!--
+            <ng-container matColumnDef="fechahorafin">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha Fin </th>
+                <td mat-cell *matCellDef="let element">{{element.fecha_horafin | date: 'yyyy/MM/dd HH:mm:ss '}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                <td mat-cell *matCellDef="let element">{{element.status}}</td>
+            </ng-container>
+
+            -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+
+
+</div>

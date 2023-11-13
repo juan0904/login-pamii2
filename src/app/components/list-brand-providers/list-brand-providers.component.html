@@ -1,0 +1,140 @@
+<div class="m-5">
+    <app-navbar [mensaje]="mensaje"></app-navbar>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" (change)="cargarPlantilla($event)" #fileUploader>
+            <button mat-raised-button color="primary" *ngIf="excelData.length > 0" (click)=confirmarPlantilla() type="button">Confimar Plantilla</button>
+        </div>
+        <div class="col-lg-6" style="text-align: right;">
+            <!--
+            <button mat-raised-button color="warn" routerLink="/usuario">Agregar</button>
+            -->
+            <button mat-raised-button color="secondary" (click)="openDialog()" type="button">Instructivo</button>
+            <button mat-raised-button color="warn" (click)=generaPlantilla() type="button">Descargar Plantilla</button>
+            <button mat-raised-button color="primary" routerLink="/home" type="button ">Home</button>
+
+        </div>
+    </div>
+
+    <!--
+    <button mat-button (click)="openDialog()">Open dialog</button>
+    -->
+
+    <h3 style="text-align: center">Ofertas desde Plantilla. </h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Proveedor/Marca</th>
+                <th scope="col">Zona</th>
+                <th scope="col">Fecha Activacion</th>
+                <th scope="col">Fecha Finalizacion</th>
+                <th scope="col">Nro Oportunidades</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Requerimientos</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let data of excelData; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{data['PROVEEDOR/MARCA']}}</td>
+                <td>{{data['ZONA']}}</td>
+                <td>{{data['FECHA ACTIVACION']}}</td>
+                <td>{{data['FECHA FINALIZACION']}}</td>
+                <td>{{data['NRO OPORTUNIDADES']}}</td>
+                <td>{{data['TITULO OPORTUNIDAD']}}</td>
+                <td>{{data['DESCRIPCION OPORTUNIDAD']}}</td>
+                <td>
+                    <p *ngIf="data['REQUERIMIENTO1'] && data['REQUERIMIENTO1'].length > 0">- {{data['REQUERIMIENTO1']}} <br></p>
+                    <p *ngIf="data['REQUERIMIENTO2'] && data['REQUERIMIENTO2'].length > 0">- {{data['REQUERIMIENTO2']}} <br></p>
+                    <p *ngIf="data['REQUERIMIENTO3'] && data['REQUERIMIENTO3'].length > 0">- {{data['REQUERIMIENTO3']}} <br></p>
+                    <p *ngIf="data['REQUERIMIENTO4'] && data['REQUERIMIENTO4'].length > 0">- {{data['REQUERIMIENTO4']}}<br></p>
+                </td>
+            </tr>
+        </tbody>
+
+
+
+    </table>
+
+    <!--
+    <mat-form-field appearance="standard">
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ejemplo. Pedro" #input autocomplete="off">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="correo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo </th>
+                <td mat-cell *matCellDef="let element">{{element.correo}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="estado">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+                <td mat-cell *matCellDef="let element">
+                    <a *ngIf="element.estado === true" style="color: #E15639">
+                        <mat-icon>done</mat-icon>
+                    </a>
+
+                    <a *ngIf="element.estado === false" style="color: #E15639">
+                        <mat-icon>block</mat-icon>
+                    </a>
+
+                </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="rol">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+                <td mat-cell *matCellDef="let element"> {{element.rol}} </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                <td mat-cell *matCellDef="let element; let i = index">
+
+                    <a class="pointer" routerLink="/usuario/{{element.id}}" style="color: #1878B0">
+                        <mat-icon>edit</mat-icon>
+                    </a>
+
+                    <a (click)=eliminarUsuarioPamii(i,element) class="pointer" style="color: #E15639">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+
+
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+
+    -->
+</div>

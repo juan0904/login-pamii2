@@ -1,0 +1,17 @@
+img {
+    width: 20%;
+    height: auto;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.pointer {
+    cursor: pointer;
+}

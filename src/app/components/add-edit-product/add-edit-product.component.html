@@ -1,0 +1,88 @@
+<!--
+<form [formGroup]="forma">
+
+    <mat-form-field>
+        <input matInput placeholder="Sku Producto" formControlName="titulo">
+    </mat-form-field>
+    <br>
+
+    <mat-form-field>
+        <input matInput placeholder="Sku Referencia" formControlName="desc">
+    </mat-form-field>
+    <br>
+
+
+     <button (click)="onNoClick()" mat-raised-button color="warn">Cancelar</button>
+</form>
+-->
+
+<button (click)="onNoClick()" mat-raised-button color="warn">Cancelar</button>
+
+<div *ngFor="let product of anProduct" class="card">
+    <div class="card-header">
+      <b>ID:</b>{{product.id}} <b>SKU:</b>{{product.sku}} - <b>{{product.product}}</b>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Datos Producto</h5>
+      <p class="card-text"><b>Largo:</b>{{product.long}} <b>Alto:</b>{{product.high}} <b>Ancho:</b>{{product.wide}} <b>Peso:</b>{{product.weight}} <b>Estado:</b>{{product.optionsStatus}}</p>
+
+      <h5 class="card-title">Datos Referencia</h5>
+
+      <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Sku</th>
+                <th scope="col">Referencia</th>
+                
+                <th scope="col">Estado</th>
+                <th scope="col">Cantidad</th>
+                <!--
+                <th scope="col">Ancho</th>
+                <th scope="col">Peso</th>
+                <th scope="col">Sku Referencia</th>
+                <th scope="col">Referencia</th>
+                <th scope="col">Acciones</th>
+                -->
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let ref of referencias; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{ref.sku}}</td>
+                <td>{{ref.reference}}</td>
+                
+                <td>{{ref.optionsStatus}}</td>
+                <td>{{ref.qty}}</td>
+                <!--
+                <td>{{data['alto']}}</td>
+                <td>{{data['peso']}}</td>
+                <td>{{data['sku de la referencia']}}</td>
+                <td>{{data['referencia']}}</td>
+
+                <td >
+                    <button (click)="viewProduct(data)" class="btn btn-outline-success">
+                        <i class="fa fa-shopping-cart"></i>
+                        Ver Producto
+                    </button>
+                </td>                
+                -->
+
+            </tr>
+        </tbody>
+
+
+
+    </table>
+
+
+      <!--
+      <p class="card-text">{{product.characteristics}}</p>
+
+       <a href="#" class="btn btn-primary">Go somewhere</a>
+      -->
+    </div>
+  </div>
+
+
