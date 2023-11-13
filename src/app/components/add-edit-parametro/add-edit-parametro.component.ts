@@ -373,9 +373,7 @@ export class AddEditParametroComponent implements OnInit {
 
   validaNumeroDecimal() {
     let unValor = this.myForm.get('valor_decimal')?.value;
-
     //console.log(unValor);
-
     
     if (unValor !== undefined) {
       if (typeof unValor !== 'number') {
